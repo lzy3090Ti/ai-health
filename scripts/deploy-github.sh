@@ -64,20 +64,20 @@ api POST "/repos/$LOGIN/$REPO/pages" "$PAGES_BODY" >/dev/null 2>&1 || \
 
 echo "▸ 等待首次构建（最长约 5 分钟）…"
 for i in $(seq 1 60); do
-  STATUS=$(api GET "/repos/$LOGIN/$REPO/actions/runs?per_page=1" | python3 - <<'PY'
+  # 注意：这里用 python3 -c 而不是 heredoc，heredoc 会抢占 stdin、把上面的管道写断
+  STATUS=$(api GET "/repos/$LOGIN/$REPO/actions/runs?per_page=1" | python3 -c '
 import sys, json
 try:
     d = json.load(sys.stdin)
     runs = d.get("workflow_runs") or []
     if not runs:
-        print("none|")
+        print("none||")
     else:
         r = runs[0]
-        print(f'{r.get("status")}|{r.get("conclusion")}|{r.get("html_url")}')
+        print("%s|%s|%s" % (r.get("status"), r.get("conclusion") or "", r.get("html_url")))
 except Exception:
-    print("parse|")
-PY
-)
+    print("parse||")
+')
   IFS='|' read -r ST CON URL <<< "$STATUS"
   echo "  [$i] status=$ST conclusion=${CON:-—}"
   if [[ "$ST" == "completed" ]]; then
