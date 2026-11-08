@@ -1,5 +1,6 @@
 import { ArrowLeft, Check, LockKeyhole, Mail } from 'lucide-react';
 import { useState } from 'react';
+import { asset } from '../lib/asset';
 import { isSupabaseConfigured, supabase } from '../lib/supabase';
 
 export function AuthPage({ onBack, onSuccess }: { onBack: () => void; onSuccess: () => void }) {
@@ -40,7 +41,7 @@ export function AuthPage({ onBack, onSuccess }: { onBack: () => void; onSuccess:
       <button className="back-button" onClick={onBack}><ArrowLeft size={17} />返回设置</button>
       <div className="auth-layout">
         <section className="auth-intro">
-          <img src="/app-icon.png" alt="Ai·健康" />
+          <img src={asset('app-icon.png')} alt="Ai·健康" />
           <span className="section-kicker">YOUR HEALTH ACCOUNT</span>
           <h1>保存你的<br />健康轨迹。</h1>
           <div className="trial-number"><strong>24</strong><span>h</span></div>

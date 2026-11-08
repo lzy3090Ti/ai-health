@@ -2,6 +2,7 @@ import { PanelLeftClose } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { getBMI, getHealthAssessment } from '../data';
+import { asset } from '../lib/asset';
 import type { Vault } from '../types';
 
 const RADIUS = 52;
@@ -39,7 +40,7 @@ export function OverviewPanel({ vault, demoMode, signedIn, onCollapse }: { vault
   return (
     <aside className="overview-panel">
       <div className="brand-row">
-        <div className="brand-lockup"><img src="/app-icon.png" alt="Ai·健康" /><div><span className="brand">Ai·健康</span><span className="brand-subtitle">PERSONAL HEALTH</span></div></div>
+        <div className="brand-lockup"><img src={asset('app-icon.png')} alt="Ai·健康" /><div><span className="brand">Ai·健康</span><span className="brand-subtitle">PERSONAL HEALTH</span></div></div>
         <button className="icon-button collapse-button" onClick={onCollapse} aria-label="收起总览"><PanelLeftClose size={19} /></button>
       </div>
       <section className="ring-section">
