@@ -1,0 +1,36 @@
+# 系统与编辑器
+.DS_Store
+Thumbs.db
+*.swp
+
+# WorkBuddy 客户端数据（项目元数据、记忆、备份，不应进仓库）
+.workbuddy/
+*.genie
+
+# 依赖与构建产物（CI 会重新构建，不入库）
+web/node_modules/
+web/dist/
+web/android/.gradle/
+web/android/**/build/
+web/android/local.properties
+web/android/capacitor-cordova-android-plugins/
+
+# 签名材料与本地密钥（绝不入库）
+web/android/app/*.jks
+web/android/app/*.keystore
+web/android/keystore.properties
+
+# 本地环境覆盖（.env 中的 publishable key 为公开信息，保留入库供 CI 构建）
+web/.env.local
+web/.env.*.local
+
+# 日志
+*.log
+npm-debug.log*
+
+# Supabase CLI 本地状态（含带口令的连接串，绝不入库）
+supabase/.temp/
+web/supabase/.temp/
+
+# 打包产物压缩包
+*.zip

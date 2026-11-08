@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Ai·健康</string>
+    <string name="title_activity_main">Ai·健康</string>
+    <string name="package_name">com.healthagent.vault</string>
+    <string name="custom_url_scheme">com.healthagent.vault</string>
+</resources>
